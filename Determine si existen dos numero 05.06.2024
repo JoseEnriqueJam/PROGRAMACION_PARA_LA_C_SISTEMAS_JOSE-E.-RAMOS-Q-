@@ -1,0 +1,34 @@
+#include <iostream>
+#include <unordered_set>
+#include <vector>
+
+bool encuentra_suma(std::vector<int>& arr, int K) {
+    
+    std::unordered_set<int> numeros_vistos;
+
+    
+    for (int num : arr) {
+       
+        int complemento = K - num;
+        
+        if (numeros_vistos.find(complemento) != numeros_vistos.end()) {
+            return true;
+        }
+    
+        numeros_vistos.insert(num);
+    }
+
+    return false;
+}
+
+int main() {
+  
+    std::vector<int> arr = {1, 2, 3, 4, 5};
+    int K = 9;
+    if (encuentra_suma(arr, K)) {
+        std::cout << "Se encontraron dos números cuya suma es " << K << std::endl;
+    } else {
+        std::cout << "No se encontraron dos números cuya suma es " << K << std::endl;
+    }
+    return 0;
+}
