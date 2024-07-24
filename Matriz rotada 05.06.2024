@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+void rotar_matriz(std::vector<std::vector<int>>& matriz) {
+    int n = matriz.size();
+
+    
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            std::swap(matriz[i][j], matriz[j][i]);
+        }
+    }
+
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n / 2; ++j) {
+            std::swap(matriz[i][j], matriz[i][n - 1 - j]);
+        }
+    }
+}
+
+int main() {
+   
+    std::vector<std::vector<int>> matriz = {{1, 2, 3},
+                                            {4, 5, 6},
+                                            {7, 8, 9}};
+
+    rotar_matriz(matriz);
+
+    std::cout << "Matriz rotada 90 grados en sentido horario:" << std::endl;
+    for (const auto& fila : matriz) {
+        for (int elemento : fila) {
+            std::cout << elemento << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
