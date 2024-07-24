@@ -1,0 +1,50 @@
+# Ordenamiento-topologico-05-07-2024
+Ejercicio de ordenamiento topologico
+
+JOSE ENRIQUE RAMOS QUISPE
+
+
+from collections import deque, defaultdict
+
+def ordenamiento_topologico(grafo):
+    # Calcular el grado de entrada para cada nodo
+    grado_entrada = {nodo: 0 for nodo in grafo}
+    for nodo in grafo:
+        for vecino in grafo[nodo]:
+            grado_entrada[vecino] += 1
+    
+    # Inicializar la cola con los nodos que tienen grado de entrada cero
+    cola = deque([nodo for nodo in grafo if grado_entrada[nodo] == 0])
+    orden = []
+
+    while cola:
+        nodo = cola.popleft()
+        orden.append(nodo)
+        
+        # Reducir el grado de entrada de los nodos vecinos
+        for vecino in grafo[nodo]:
+            grado_entrada[vecino] -= 1
+            if grado_entrada[vecino] == 0:
+                cola.append(vecino)
+    
+    # Verificar si todos los nodos están en el orden, indicando que no hay ciclos
+    if len(orden) == len(grafo):
+        return orden
+    else:
+        raise Exception("El grafo tiene un ciclo y no se puede realizar un ordenamiento topológico.")
+
+# Ejemplo de uso:
+grafo = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': ['F'],
+    'E': ['D', 'F'],
+    'F': []
+}
+
+try:
+    resultado = ordenamiento_topologico(grafo)
+    print("Ordenamiento topológico:", resultado)
+except Exception as e:
+    print(e)
