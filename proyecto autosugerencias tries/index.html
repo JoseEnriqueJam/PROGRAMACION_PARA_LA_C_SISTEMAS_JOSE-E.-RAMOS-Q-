@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosuggest with Trie</title>
+    <style>
+        /* Estilos básicos para la página */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        /* Estilos para el contenedor de sugerencias */
+        .suggestions {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        /* Estilos para cada sugerencia */
+        .suggestion {
+            padding: 8px;
+            cursor: pointer;
+        }
+        /* Estilos para el estado de hover de cada sugerencia */
+        .suggestion:hover {
+            background-color: #f0f0f0;
+        }
+        /* Estilos para la sugerencia seleccionada */
+        .selected {
+            background-color: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Autosugerencia de palabras</h1>
+    <!-- Campo de entrada para buscar -->
+    <input type="text" id="searchBox" placeholder="Busqueda" />
+    <input type="text" id="searchBox" placeholder="" />
+    <!-- Contenedor para mostrar las sugerencias -->
+    <div id="suggestions" class="suggestions"></div>
+
+    <!-- Inclusión de los archivos JavaScript -->
+    <script src="trie.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
