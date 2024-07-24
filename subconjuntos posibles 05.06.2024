@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+
+void generar_subconjuntos(const std::vector<int>& nums, std::vector<int>& subset, int index) {
+    
+    std::cout << "{";
+    for (int i = 0; i < subset.size(); ++i) {
+        if (i > 0) {
+            std::cout << ", ";
+        }
+        std::cout << subset[i];
+    }
+    std::cout << "}" << std::endl;
+
+    
+    for (int i = index; i < nums.size(); ++i) {
+        subset.push_back(nums[i]);
+        generar_subconjuntos(nums, subset, i + 1);
+        subset.pop_back();
+    }
+}
+
+void generar_todos_subconjuntos(const std::vector<int>& nums) {
+    std::vector<int> subset;
+    generar_subconjuntos(nums, subset, 0);
+}
+
+int main() {
+    
+    std::vector<int> nums = {1, 2, 3};
+    generar_todos_subconjuntos(nums);
+    return 0;
+}
